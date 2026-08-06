@@ -1,48 +1,61 @@
-# Strategy Classes
 class CreditCard:
-
-    def pay(self):
-        print("Payment made using Credit Card")
+    def pay(self, amount):
+        print(f"Payment of ₹{amount} made using Credit Card.")
 
 
 class DebitCard:
-
-    def pay(self):
-        print("Payment made using Debit Card")
+    def pay(self, amount):
+        print(f"Payment of ₹{amount} made using Debit Card.")
 
 
 class UPI:
+    def pay(self, amount):
+        print(f"Payment of ₹{amount} made using UPI.")
 
-    def pay(self):
-        print("Payment made using UPI")
+
+class NetBanking:
+    def pay(self, amount):
+        print(f"Payment of ₹{amount} made using Net Banking.")
 
 
 # Context Class
-class Payment:
+class PaymentProcessor:
 
-    def __init__(self, strategy):
-        self.strategy = strategy
+    def __init__(self, payment_method):
+        self.payment_method = payment_method
 
-    def process(self):
-        self.strategy.pay()
+    def process_payment(self, amount):
+        self.payment_method.pay(amount)
 
 
 # Main Program
-print("Select Payment Method")
+
+print("====== Payment Processing System ======")
 print("1. Credit Card")
 print("2. Debit Card")
 print("3. UPI")
+print("4. Net Banking")
 
-choice = int(input("Enter your choice: "))
+choice = int(input("Enter your Choice: "))
+amount = float(input("Enter Amount: ₹"))
+
+# Select Strategy
 
 if choice == 1:
-    p = Payment(CreditCard())
+    payment = CreditCard()
+
 elif choice == 2:
-    p = Payment(DebitCard())
+    payment = DebitCard()
+
 elif choice == 3:
-    p = Payment(UPI())
+    payment = UPI()
+
+elif choice == 4:
+    payment = NetBanking()
+
 else:
-    print("Invalid Choice")
+    print("Invalid Choice!")
     exit()
 
-p.process()
+processor = PaymentProcessor(payment)
+processor.process_payment(amount)
