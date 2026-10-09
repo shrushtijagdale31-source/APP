@@ -1,0 +1,4 @@
+Python is a programming language.
+File handling is easy.
+We can read files in Python.
+We can also write files.
